@@ -2,6 +2,8 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    kotlin("plugin.serialization") version "1.9.20"
+
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -31,6 +33,10 @@ kotlin {
             dependencies {
                 // Put your multiplatform dependencies here
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0-RC2")
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.content.negotiation)
+                implementation(libs.ktor.serialization.kotlinx.json)
+                implementation(libs.kotlinx.datetime)
 
             }
         }
@@ -38,6 +44,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+                implementation(libs.ktor.client.android)
                 // Add other Android-specific dependencies here if needed
             }
         }
@@ -64,5 +71,7 @@ android {
     }
 }
 dependencies {
+    implementation("androidx.core:core-ktx:+")
+    implementation("androidx.core:core-ktx:+")
     implementation("androidx.core:core-ktx:+")
 }
